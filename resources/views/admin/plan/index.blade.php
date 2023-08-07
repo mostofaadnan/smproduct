@@ -1,7 +1,6 @@
 @extends('admin.layouts.app')
 
 @section('panel')
-
     <div class="row">
         <div class="col-lg-12">
             <div class="card">
@@ -37,8 +36,6 @@
                                     <td data-label="@lang('Daily Ad Limit')">
                                         {{ $plan->daily_ad_limit }}
                                     </td>
-
-
                                     <td data-label="@lang('Status')">
                                         @if($plan->status == 1)
                                             <span class="text--small badge font-weight-normal badge--success">@lang('Active')</span>
@@ -47,8 +44,6 @@
                                                 class="text--small badge font-weight-normal badge--danger">@lang('Inactive')</span>
                                         @endif
                                     </td>
-
-
                                     <td data-label="@lang('Action')">
                                         <button type="button" class="icon-btn edit" data-toggle="tooltip"
                                                 data-id="{{ $plan->id }}"
@@ -238,14 +233,10 @@
         </div>
     </div>
 
-
 @endsection
-
-
 
 @push('breadcrumb-plugins')
     <a href="javascript:void(0)" class="btn btn-sm btn--success add-plan"><i class="fa fa-fw fa-plus"></i>@lang('Add New')</a>
-
 @endpush
 
 @push('script')

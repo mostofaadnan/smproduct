@@ -107,7 +107,6 @@ class CronController extends Controller
                 $uex->bv_right = $bv['setr'];
                 $uex->save();
 
-
                 if ($bv['paid'] != 0) {
                     createBVLog($user->id, 1, $bv['paid'], 'Paid ' . $bonus . ' ' . $gnl->cur_text . ' For ' . $paidbv . ' BV.');
                     createBVLog($user->id, 2, $bv['paid'], 'Paid ' . $bonus . ' ' . $gnl->cur_text . ' For ' . $paidbv . ' BV.');

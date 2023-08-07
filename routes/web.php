@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\ExtensionController;
 use App\Http\Controllers\Admin\FrontendController;
 use App\Http\Controllers\Admin\GatewayController;
 use App\Http\Controllers\Admin\GeneralSettingController;
+use App\Http\Controllers\Admin\ItemTypeController;
 use App\Http\Controllers\Admin\LanguageController;
 use App\Http\Controllers\Admin\ManageUsersController;
 use App\Http\Controllers\Admin\ManualGatewayController;
@@ -18,6 +19,7 @@ use App\Http\Controllers\Admin\PageBuilderController;
 use App\Http\Controllers\Admin\PtcController;
 use App\Http\Controllers\Admin\ReportController;
 use App\Http\Controllers\Admin\SmsTemplateController;
+use App\Http\Controllers\Admin\SponsorCommisionPlanController;
 use App\Http\Controllers\Admin\SubscriberController;
 use App\Http\Controllers\Admin\SupportTicketController;
 use App\Http\Controllers\Admin\WithdrawalController;
@@ -87,31 +89,31 @@ Route::get('/clear', function () {
 */
 
 
-Route::get('/cron', [CronController::class,'cron'])->name('bv.matching.cron');
+Route::get('/cron', [CronController::class, 'cron'])->name('bv.matching.cron');
 
 Route::namespace('Gateway')->prefix('ipn')->name('ipn.')->group(function () {
-    Route::post('paypal', [ProcessController::class,'ipn'])->name('paypal');
-    Route::get('paypal_sdk', [Paypal_sdk_2ProcessController::class,'ipn'])->name('paypal_sdk');
-    Route::post('perfect_money', [Perfect_moneyProcessController::class,'ipn'])->name('perfect_money');
-    Route::post('stripe', [StripeProcessController::class,'ipn'])->name('stripe');
-    Route::post('stripe_js', [Stripe_jsProcessController::class,'ipn'])->name('stripe_js');
-    Route::post('stripe_v3',[Stripe_v3ProcessController::class,'ipn'])->name('stripe_v3');
-    Route::post('skrill', [SkrillProcessController::class,'ipn'])->name('skrill');
-    Route::post('paytm', [PaytmProcessController::class,'ipn'])->name('paytm');
-    Route::post('payeer', [PayeerProcessController::class,'ipn'])->name('payeer');
-    Route::post('paystack', [PaystackProcessController::class,'ipn'])->name('paystack');
-    Route::post('voguepay', [VoguepayProcessController::class,'ipn'])->name('voguepay');
-    Route::get('flutterwave/{trx}/{type}', [FlutterwaveProcessController::class,'ipn'])->name('flutterwave');
-    Route::post('razorpay',[RazorpayProcessController::class,'ipn'])->name('razorpay');
-    Route::post('instamojo', [InstamojoProcessController::class,'ipn'])->name('instamojo');
-    Route::get('blockchain', [BlockchainProcessController::class,'ipn'])->name('blockchain');
-    Route::get('blockio', [BlockioProcessController::class,'ipn'])->name('blockio');
-    Route::post('coinpayments', [CoinpaymentsProcessController::class,'ipn'])->name('coinpayments');
-    Route::post('coinpayments_fiat', [Coinpayments_fiatProcessController::class,'ipn'])->name('coinpayments_fiat');
-    Route::post('coingate',[CoingateProcessController::class,'ipn'])->name('coingate');
-    Route::post('coinbase_commerce', [Coinbase_commerceProcessController::class,'ipn'])->name('coinbase_commerce');
-    Route::get('mollie', [MollieProcessController::class,'ipn'])->name('mollie');
-    Route::post('cashmaal', [CashmaalProcessController::class,'ipn'])->name('cashmaal');
+    Route::post('paypal', [ProcessController::class, 'ipn'])->name('paypal');
+    Route::get('paypal_sdk', [Paypal_sdk_2ProcessController::class, 'ipn'])->name('paypal_sdk');
+    Route::post('perfect_money', [Perfect_moneyProcessController::class, 'ipn'])->name('perfect_money');
+    Route::post('stripe', [StripeProcessController::class, 'ipn'])->name('stripe');
+    Route::post('stripe_js', [Stripe_jsProcessController::class, 'ipn'])->name('stripe_js');
+    Route::post('stripe_v3', [Stripe_v3ProcessController::class, 'ipn'])->name('stripe_v3');
+    Route::post('skrill', [SkrillProcessController::class, 'ipn'])->name('skrill');
+    Route::post('paytm', [PaytmProcessController::class, 'ipn'])->name('paytm');
+    Route::post('payeer', [PayeerProcessController::class, 'ipn'])->name('payeer');
+    Route::post('paystack', [PaystackProcessController::class, 'ipn'])->name('paystack');
+    Route::post('voguepay', [VoguepayProcessController::class, 'ipn'])->name('voguepay');
+    Route::get('flutterwave/{trx}/{type}', [FlutterwaveProcessController::class, 'ipn'])->name('flutterwave');
+    Route::post('razorpay', [RazorpayProcessController::class, 'ipn'])->name('razorpay');
+    Route::post('instamojo', [InstamojoProcessController::class, 'ipn'])->name('instamojo');
+    Route::get('blockchain', [BlockchainProcessController::class, 'ipn'])->name('blockchain');
+    Route::get('blockio', [BlockioProcessController::class, 'ipn'])->name('blockio');
+    Route::post('coinpayments', [CoinpaymentsProcessController::class, 'ipn'])->name('coinpayments');
+    Route::post('coinpayments_fiat', [Coinpayments_fiatProcessController::class, 'ipn'])->name('coinpayments_fiat');
+    Route::post('coingate', [CoingateProcessController::class, 'ipn'])->name('coingate');
+    Route::post('coinbase_commerce', [Coinbase_commerceProcessController::class, 'ipn'])->name('coinbase_commerce');
+    Route::get('mollie', [MollieProcessController::class, 'ipn'])->name('mollie');
+    Route::post('cashmaal', [CashmaalProcessController::class, 'ipn'])->name('cashmaal');
 });
 
 // User Support Ticket
@@ -210,8 +212,22 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
         Route::post('/ptc/store',  [PtcController::class, 'store'])->name('ptc.store');
         Route::get('/ptc/edit/{id}',  [PtcController::class, 'edit'])->name('ptc.edit');
         Route::post('/ptc/update/{id}',  [PtcController::class, 'update'])->name('ptc.update');
+        //Sponsore Generation
+        Route::get('/sponsore-generation',  [SponsorCommisionPlanController::class, 'index'])->name('sponsor_generetion_plans.index');
+        Route::get('/sponsore-generation/create',  [SponsorCommisionPlanController::class, 'create'])->name('sponsor_generetion_plans.create');
+        Route::get('/sponsore-generation/add-plan',  [SponsorCommisionPlanController::class, 'addPlan'])->name('sponsor_generetion_plans.addPlan');
+        Route::post('/sponsore-generation/store',  [SponsorCommisionPlanController::class, 'store'])->name('sponsor_generetion_plans.store');
+        Route::get('/sponsore-generation/edit/{id}',  [SponsorCommisionPlanController::class, 'edit'])->name('sponsor_generetion_plans.edit');
+        Route::post('/sponsore-generation/update/{id}',  [SponsorCommisionPlanController::class, 'update'])->name('sponsor_generetion_plans.update');
 
-
+        //items
+        //Route::resource('item_types', ItemTypeController::class);
+        Route::get('/item_types',  [ItemTypeController::class, 'index'])->name('item_types.index');
+        Route::get('/item_types/create',  [ItemTypeController::class, 'create'])->name('item_types.create');
+        Route::post('/item_types/store',  [ItemTypeController::class, 'store'])->name('item_types.store');
+        Route::get('/item_types/edit/{id}',  [ItemTypeController::class, 'edit'])->name('item_types.edit');
+        Route::post('/item_types/update/{id}',  [ItemTypeController::class, 'update'])->name('item_types.update');
+        
         // Subscriber
         Route::get('subscriber', [SubscriberController::class, 'index'])->name('subscriber.index');
         Route::get('subscriber/send-email', [SubscriberController::class, 'sendEmailForm'])->name('subscriber.sendEmail');
@@ -404,15 +420,15 @@ Route::name('user.')->group(function () {
     Route::post('/login', [AuthLoginController::class, 'login']);
     Route::get('logout', [AuthLoginController::class, 'logout'])->name('logout');
 
-    Route::get('register', [RegisterController::class,'showRegistrationForm'])->name('register');
-    Route::post('register', [RegisterController::class,'register'])->middleware('regStatus');
+    Route::get('register', [RegisterController::class, 'showRegistrationForm'])->name('register');
+    Route::post('register', [RegisterController::class, 'register'])->middleware('regStatus');
 
-    Route::get('password/reset', [AuthForgotPasswordController::class,'showLinkRequestForm'])->name('password.request');
-    Route::post('password/email', [AuthForgotPasswordController::class,'sendResetLinkEmail'])->name('password.email');
-    Route::get('password/code-verify', [AuthForgotPasswordController::class,'codeVerify'])->name('password.code_verify');
-    Route::post('password/reset', [AuthResetPasswordController::class,'reset'])->name('password.update');
-    Route::get('password/reset/{token}', [AuthResetPasswordController::class,'showResetForm'])->name('password.reset');
-    Route::post('password/verify-code', [AuthForgotPasswordController::class,'verifyCode'])->name('password.verify-code');
+    Route::get('password/reset', [AuthForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
+    Route::post('password/email', [AuthForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
+    Route::get('password/code-verify', [AuthForgotPasswordController::class, 'codeVerify'])->name('password.code_verify');
+    Route::post('password/reset', [AuthResetPasswordController::class, 'reset'])->name('password.update');
+    Route::get('password/reset/{token}', [AuthResetPasswordController::class, 'showResetForm'])->name('password.reset');
+    Route::post('password/verify-code', [AuthForgotPasswordController::class, 'verifyCode'])->name('password.verify-code');
 });
 
 Route::name('user.')->prefix('user')->group(function () {
