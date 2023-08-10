@@ -21,7 +21,7 @@ return new class extends Migration
             $table->decimal('final_amount', 18, 8)->default(0);
             $table->decimal('after_charge', 18, 8);
             $table->text('withdraw_information')->default(null);
-            $table->tinyInteger('status')->comment('1=>success, 2=>pending, 3=>cancel,  ')->default(0);
+            $table->tinyInteger('status')->comment('1=>success, 2=>pending, 3=>cancel,')->default(0);
             $table->text('admin_feedback')->default(null);
 			$table->timestamps();
 

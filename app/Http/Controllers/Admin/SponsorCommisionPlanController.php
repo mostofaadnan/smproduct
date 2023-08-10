@@ -7,7 +7,7 @@ use App\Models\SponsoreCommissionPlan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class ItemTypeControllerSponsorCommisionPlanController extends Controller
+class SponsorCommisionPlanController extends Controller
 {
     public function index()
     {

@@ -20,7 +20,7 @@ return new class extends Migration
 		$table->decimal('rate', 18, 8)->default(null);
 		$table->decimal('percent_charge', 5, 2)->default(null);
 		$table->string('currency', 20)->default(null);
-		$table->text('user_data')->default(null);
+		$table->text('user_data')->nullable()->default(null);
 		$table->text('description')->default(null);
 		$table->tinyInteger('status')->default(1);
 		$table->timestamps();

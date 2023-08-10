@@ -48,12 +48,9 @@
                         </div>
                     </div>
 
-
-
-
                     <div class="form-group col-md-4">
                         <label>@lang('Status')</label>
-                        <input type="checkbox" data-width="100%" data-onstyle="-success" data-offstyle="-danger" data-toggle="toggle" data-on="Active" data-off="Inactive" name="status">
+                        <input type="checkbox" data-width="100%" data-onstyle="-success" data-offstyle="-danger" data-toggle="toggle" data-on="Active" data-off="Inactive" @if ($item->status) checked @endif name="status">
                     </div>
                 </div>
 

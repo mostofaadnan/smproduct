@@ -60,8 +60,6 @@ class ItemTypeController extends Controller
         ]);
         DB::beginTransaction();
         try {
-
-            $data['status'] = isset($request->status) ? 1 : 0;
             $itemType->update($data);
             DB::commit();
             $notify[] = ['success', 'item Type has been update successfully.'];

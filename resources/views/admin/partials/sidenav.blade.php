@@ -32,13 +32,44 @@
                     </a>
                     <div class="sidebar-submenu {{ menuActive('admin.items*', 2) }} ">
                         <ul>
-                            <li
-                                class="sidebar-menu-item {{ menuActive(['admin.item_types.index']) }}">
+                            <li class="sidebar-menu-item {{ menuActive(['admin.item_types.index']) }}">
                                 <a href="{{ route('admin.item_types.index') }}" class="nav-link">
                                     <i class="menu-icon las la-dot-circle"></i>
                                     <span class="menu-title">@lang('Type')</span>
                                 </a>
                             </li>
+                            <li class="sidebar-menu-item {{ menuActive(['admin.item_categories.index']) }}">
+                                <a href="{{ route('admin.item_categories.index') }}" class="nav-link">
+                                    <i class="menu-icon las la-dot-circle"></i>
+                                    <span class="menu-title">@lang('Category')</span>
+                                </a>
+                            </li>
+                            <li class="sidebar-menu-item {{ menuActive(['admin.item_units.index']) }}">
+                                <a href="{{ route('admin.item_units.index') }}" class="nav-link">
+                                    <i class="menu-icon las la-dot-circle"></i>
+                                    <span class="menu-title">@lang('Unit')</span>
+                                </a>
+                            </li>
+                            <li class="sidebar-menu-item {{ menuActive(['admin.attribute_types.index']) }}">
+                                <a href="{{ route('admin.attribute_types.index') }}" class="nav-link">
+                                    <i class="menu-icon las la-dot-circle"></i>
+                                    <span class="menu-title">@lang('Attribute')</span>
+                                </a>
+                            </li>
+                           
+                            <li class="sidebar-menu-item {{ menuActive(['admin.products.index']) }}">
+                                <a href="{{ route('admin.products.index') }}" class="nav-link">
+                                    <i class="menu-icon las la-dot-circle"></i>
+                                    <span class="menu-title">@lang('Product')</span>
+                                </a>
+                            </li>
+                            <li class="sidebar-menu-item {{ menuActive(['admin.packages.index']) }}">
+                                <a href="{{ route('admin.packages.index') }}" class="nav-link">
+                                    <i class="menu-icon las la-dot-circle"></i>
+                                    <span class="menu-title">@lang('Package')</span>
+                                </a>
+                            </li>
+
                         </ul>
                     </div>
                 </li>

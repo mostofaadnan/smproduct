@@ -1,9 +1,11 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\AttributeTypeController;
 use App\Http\Controllers\Admin\Auth\ForgotPasswordController;
 use App\Http\Controllers\Admin\Auth\LoginController;
 use App\Http\Controllers\Admin\Auth\ResetPasswordController;
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DepositController;
 use App\Http\Controllers\Admin\EmailTemplateController;
 use App\Http\Controllers\Admin\ExtensionController;
@@ -15,13 +17,16 @@ use App\Http\Controllers\Admin\LanguageController;
 use App\Http\Controllers\Admin\ManageUsersController;
 use App\Http\Controllers\Admin\ManualGatewayController;
 use App\Http\Controllers\Admin\MlmController;
+use App\Http\Controllers\Admin\PackageController;
 use App\Http\Controllers\Admin\PageBuilderController;
+use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\PtcController;
 use App\Http\Controllers\Admin\ReportController;
 use App\Http\Controllers\Admin\SmsTemplateController;
 use App\Http\Controllers\Admin\SponsorCommisionPlanController;
 use App\Http\Controllers\Admin\SubscriberController;
 use App\Http\Controllers\Admin\SupportTicketController;
+use App\Http\Controllers\Admin\UnitController;
 use App\Http\Controllers\Admin\WithdrawalController;
 use App\Http\Controllers\Admin\WithdrawMethodController;
 use App\Http\Controllers\Auth\ForgotPasswordController as AuthForgotPasswordController;
@@ -227,7 +232,44 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
         Route::post('/item_types/store',  [ItemTypeController::class, 'store'])->name('item_types.store');
         Route::get('/item_types/edit/{id}',  [ItemTypeController::class, 'edit'])->name('item_types.edit');
         Route::post('/item_types/update/{id}',  [ItemTypeController::class, 'update'])->name('item_types.update');
-        
+
+        //Item Category
+        Route::get('/item_categories',  [CategoryController::class, 'index'])->name('item_categories.index');
+        Route::get('/item_categories/create',  [CategoryController::class, 'create'])->name('item_categories.create');
+        Route::post('/item_categories/store',  [CategoryController::class, 'store'])->name('item_categories.store');
+        Route::get('/item_categories/edit/{id}',  [CategoryController::class, 'edit'])->name('item_categories.edit');
+        Route::post('/item_categories/update/{id}',  [CategoryController::class, 'update'])->name('item_categories.update');
+        Route::get('/item_categories/get-subcategory/{id}', [CategoryController::class, 'getSubcategory'])->name('item_categories.getSubcategory');
+
+        //Attribute Types
+        Route::get('/attribute_types',  [AttributeTypeController::class, 'index'])->name('attribute_types.index');
+        Route::get('/attribute_types/create',  [AttributeTypeController::class, 'create'])->name('attribute_types.create');
+        Route::post('/attribute_types/store',  [AttributeTypeController::class, 'store'])->name('attribute_types.store');
+        Route::get('/attribute_types/edit/{id}',  [AttributeTypeController::class, 'edit'])->name('attribute_types.edit');
+        Route::post('/attribute_types/update/{id}',  [AttributeTypeController::class, 'update'])->name('attribute_types.update');
+        //Item Unit
+        Route::get('/item_units',  [UnitController::class, 'index'])->name('item_units.index');
+        Route::get('/item_units/create',  [UnitController::class, 'create'])->name('item_units.create');
+        Route::post('/item_units/store',  [UnitController::class, 'store'])->name('item_units.store');
+        Route::get('/item_units/edit/{id}',  [UnitController::class, 'edit'])->name('item_units.edit');
+        Route::post('/item_units/update/{id}',  [UnitController::class, 'update'])->name('item_units.update');
+
+        //Item product
+        Route::get('/products',  [ProductController::class, 'index'])->name('products.index');
+        Route::get('/products/create',  [ProductController::class, 'create'])->name('products.create');
+        Route::post('/products/store',  [ProductController::class, 'store'])->name('products.store');
+        Route::get('/products/edit/{id}',  [ProductController::class, 'edit'])->name('products.edit');
+        Route::post('/products/update/{id}',  [ProductController::class, 'update'])->name('products.update');
+        Route::get('/products/add_attribute',  [ProductController::class, 'AddAttribute'])->name('products.AddAttribute');
+        //Packages
+        Route::get('/packages',  [PackageController::class, 'index'])->name('packages.index');
+        Route::get('/packages/create',  [PackageController::class, 'create'])->name('packages.create');
+        Route::post('/packages/store',  [PackageController::class, 'store'])->name('packages.store');
+        Route::get('/packages/edit/{id}',  [PackageController::class, 'edit'])->name('packages.edit');
+        Route::post('/packages/update/{id}',  [PackageController::class, 'update'])->name('packages.update');
+        Route::get('/packages/add_attribute',  [PackageController::class, 'AddAttribute'])->name('packages.AddAttribute');
+       
+       
         // Subscriber
         Route::get('subscriber', [SubscriberController::class, 'index'])->name('subscriber.index');
         Route::get('subscriber/send-email', [SubscriberController::class, 'sendEmailForm'])->name('subscriber.sendEmail');
